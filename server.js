@@ -69,17 +69,14 @@ app.get('/products/:id', function (req, res) {
                     message:"Product Not found."
                     });
             }
-        //return res.send({ error: false, data: results[0], message: 'product list.' });
+        return res.send({ error: false, data: results[0], message: 'product list.' });
         /*res.status(200).json({
                     message:"Product found.",
                     product: results
                 });*/
-	    
+	   
 	      
-        var json = JSON.parse(fields);
-        console.log(json); // Logging the output within the request function
-        res.json(json) //then returning the response.. The request.json is empty over here
-        
+                
     });
 });
 
