@@ -78,16 +78,16 @@ app.get('/api/products/:id',(req, res) => {
                     message:"Product Not found."
                     });
             }
-        return res.send({ error: false, data: results[0], message: 'product list.' });
-        /*res.status(200).json({
+        //return res.send({ error: false, data: results[0], message: 'product list.' });
+        res.status(200).json({
                     message:"Product found.",
                     product: results
-                });*/
+                });
 	   
 	      
                 
     });
-});*/
+})*/
 
 // set port
 app.listen(port, ip);
