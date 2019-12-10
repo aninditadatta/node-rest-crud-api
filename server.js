@@ -18,11 +18,16 @@ app.get('/', function (req, res) {
 
 
 //mysql configuration
-var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || 'mysql.database-check.svc.cluster.local';
+//var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || 'mysql.database-check.svc.cluster.local';
+var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || 'mysql.gamification.svc.cluster.local';
+
 var mysqlPort = process.env.OPENSHIFT_MYSQL_DB_PORT || 3306;
-var mysqlUser = 'ccuser'; //mysql username
+//var mysqlUser = 'ccuser'; //mysql username
+var mysqlUser = 'xxuser'; //mysql username
 var mysqlPass = 'welcome1'; //mysql password
-var mysqlDb = 'productdb'; //mysql database name
+//var mysqlDb = 'productdb'; //mysql database name
+
+var mysqlDb = 'sampledb';
 
 //connection strings
 var mysqlString = 'mysql://' + mysqlUser + ':' + mysqlPass + '@' + mysqlHost + ':' + mysqlPort + '/' + mysqlDb;
@@ -64,6 +69,18 @@ app.get('/api/products/:id',(req, res) => {
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
+
+//?var1=xxxx&var2=xxxx
+//search product
+/*app.get('/api/products?desc=desctext',(req, res) => {
+  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE ITEM_NUMBER="+req.params.id;
+  console.log(sql);
+  let query = mysqlClient.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+});*/
+
 
 
 // Retrieve product with id 
