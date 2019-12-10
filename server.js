@@ -56,11 +56,11 @@ app.get('/api/products',(req, res) => {
 
 //show single product
 app.get('/api/products/:id',(req, res) => {
-  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE 'Item Number' = "+req.params.id;
+  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE 'Item Number'="+req.params.id;
   console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results[0]}));
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
 
