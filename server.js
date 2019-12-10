@@ -45,18 +45,27 @@ app.get('/mysql', function (req, res) {
     });
 });
 
-// connection configurations
-//var dbConn = mysql.createConnection({
-//    host: 'jdbc:mysql://mysql.gamification.svc.cluster.local:3306/mysql',
-//    user: 'xxuser',
-//    password: 'welcome1',
-//    database: 'sampledb'
-//});
-// connect to database
-//dbConn.connect(); 
+//show all products
+app.get('/api/products',(req, res) => {
+  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU";
+  let query = mysqlClient.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+});
+
+//show single product
+app.get('/api/products/:id',(req, res) => {
+  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE 'Item Number' = "+req.params.id;
+  console.log(sql);
+  let query = conn.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+});
 
 // Retrieve product with id 
-app.get('/products/:id', function (req, res) {
+/*app.get('/products/:id', function (req, res) {
     let item_number = req.params.id;
     if (!item_number) {
         return res.status(400).send({ error: true, message: 'Please provide product sku number' });
@@ -78,11 +87,9 @@ app.get('/products/:id', function (req, res) {
 	      
                 
     });
-});
+});*/
 
 // set port
 app.listen(port, ip);
-//app.listen(3000, function () {
-//    console.log('Node app is running on port 3000');
-//});
+
 module.exports = app;
