@@ -54,8 +54,9 @@ app.get('/mysql', function (req, res) {
 app.get('/api/products',(req, res) => {
 let sql = "SELECT * FROM XXIBM_PRODUCT_SKU";  
 
-if(req.query.desc)
+if(req.query.desc != undefined)
 {
+	console.log('inside');
 	  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '"+ req.query.desc + "%'";
 }
 console.log ('query', req.query.desc);
