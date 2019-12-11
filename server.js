@@ -51,14 +51,18 @@ app.get('/mysql', function (req, res) {
 });
 
 //show all products
-/*app.get('/api/products',(req, res) => {
+app.get('/api/products',(req, res) => {
   let sql = "SELECT * FROM XXIBM_PRODUCT_SKU";
   console.log(sql);
+	
+for (const key in req.query) {
+  console.log(key, req.query[key])
+}	
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
-});*/
+});
 
 //show single product
 app.get('/api/products/:id',(req, res) => {
@@ -72,41 +76,18 @@ app.get('/api/products/:id',(req, res) => {
 
 //?var1=xxxx&var2=xxxx
 //search product
-app.get('/api/products?desc=itemdesc',(req, res) => {
+/*app.get('/api/products?desc=itemdesc',(req, res) => {
   let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '="+ req.query.desc + "%'";
   console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
-});
+});*/
 
 
 
-// Retrieve product with id 
-/*app.get('/products/:id', function (req, res) {
-    let item_number = req.params.id;
-    if (!item_number) {
-        return res.status(400).send({ error: true, message: 'Please provide product sku number' });
-    }
-    let item_number_int = parseInt(req.params.id);
-    mysqlClient.query('SELECT * FROM XXIBM_PRODUCT_SKU WHERE "Item Number" = ? ', item_number_int, function (error, results, fields) {
-        if (error) {
-                    //throw error;
-                    res.status(200).json({
-                    message:"Product Not found."
-                    });
-            }
-        //return res.send({ error: false, data: results[0], message: 'product list.' });
-        res.status(200).json({
-                    message:"Product found.",
-                    product: results
-                });
-	   
-	      
-                
-    });
-})*/
+
 
 // set port
 app.listen(port, ip);
