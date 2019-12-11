@@ -50,16 +50,14 @@ app.get('/mysql', function (req, res) {
     });
 });
 
-//show all products
+//show all products, search products based on description
 app.get('/api/products',(req, res) => {
 let sql = "SELECT * FROM XXIBM_PRODUCT_SKU";  
 
 if(req.query.desc != undefined)
 {
-	console.log('inside');
 	sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '"+ req.query.desc + "%'";
 }
-console.log ('query', req.query.desc);
 console.log(sql);
 
   let query = mysqlClient.query(sql, (err, results) => {
@@ -77,20 +75,6 @@ app.get('/api/products/:id',(req, res) => {
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
-
-//?var1=xxxx&var2=xxxx
-//search product
-/*app.get('/api/products?desc=itemdesc',(req, res) => {
-  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '="+ req.query.desc + "%'";
-  console.log(sql);
-  let query = mysqlClient.query(sql, (err, results) => {
-    if(err) throw err;
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-  });
-});*/
-
-
-
 
 
 // set port
