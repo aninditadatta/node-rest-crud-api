@@ -53,11 +53,11 @@ app.get('/mysql', function (req, res) {
 //show all products
 app.get('/api/products',(req, res) => {
 let sql = "SELECT * FROM XXIBM_PRODUCT_SKU";  
-if(!req.query.desc)
+/*if(!req.query.desc)
   {
 	  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '="+ req.query.desc + "%'";
-  }
- 
+  }*/
+ console.log ('query', req.query.desc);
   console.log(sql);
 
   let query = mysqlClient.query(sql, (err, results) => {
