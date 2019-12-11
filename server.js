@@ -72,14 +72,14 @@ app.get('/api/products/:id',(req, res) => {
 
 //?var1=xxxx&var2=xxxx
 //search product
-/*app.get('/api/products?desc=desctext',(req, res) => {
-  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE ITEM_NUMBER="+req.params.id;
+app.get('/api/products?desc=itemdesc',(req, res) => {
+  let sql = "SELECT * FROM XXIBM_PRODUCT_SKU WHERE DESCRIPTION LIKE '="+ req.query.desc + "%'";
   console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
-});*/
+});
 
 
 
